@@ -1,20 +1,13 @@
 services:
-  react-app:
-    image: your-public-image:latest
-    container_name: react-app
-    restart: unless-stopped
-    networks:
-      - traefik-network
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react_app
+    restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.react-app.rule=Host(`websitemakerssolutions.com`)"
-      - "traefik.http.routers.react-app.entrypoints=websecure"
-      - "traefik.http.routers.react-app.tls=true"
-      - "traefik.http.routers.react-app.tls.certresolver=letsencrypt"
-      - "traefik.http.services.react-app.loadbalancer.server.port=80"
-      - "traefik.docker.network=traefik-network"
-
-networks:
-  traefik-network:
-    external: true
-    name: traefik-proxy
+      - "traefik.http.routers.reactapp.rule=Host(`websitemakerssolutions.com`) || Host(`www.websitemakerssolutions.com`)"
+      - "traefik.http.routers.reactapp.entrypoints=websecure"
+      - "traefik.http.routers.reactapp.tls.certresolver=letsencrypt"
+      - "traefik.http.services.reactapp.loadbalancer.server.port=80"
