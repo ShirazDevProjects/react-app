@@ -3,8 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: react_app
-    restart: always
+    image: react-initial:latest
+    container_name: react-initial-app
+    ports:
+      - "8080:80"
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.react-app.rule=Host(`${APP_DOMAIN:-yourdomain.com}`)"
