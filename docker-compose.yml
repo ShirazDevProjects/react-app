@@ -8,8 +8,6 @@ services:
     ports:
       - "8080:80"
     restart: unless-stopped
-    networks:
-      - traefik-net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.react-app.rule=Host(`${APP_DOMAIN:-yourdomain.com}`)"
