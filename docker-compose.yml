@@ -1,6 +1,6 @@
 services:
   react-app:
-    image: react-initial:latest
+    image: your-public-image:latest
     container_name: react-app
     restart: unless-stopped
     networks:
